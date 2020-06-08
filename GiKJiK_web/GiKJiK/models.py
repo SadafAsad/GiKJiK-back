@@ -14,13 +14,17 @@ class UserProfile(models.Model):
 
 class Class(models.Model):
 
-    owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="classes")
-    # teacher = models.ManyToManyField(UserProfile, related_name="classes")
-    # member = models.ManyToManyField(UserProfile, related_name="classes")
+    owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="owner_classes")
+    # teacher = models.ManyToManyField(UserProfile, related_name="teacher_classes")
+    # member = models.ManyToManyField(UserProfile, related_name="member_classes")
     
 class BlackBoard(models.Model):
 
     _class = models.OneToOneField(Class, on_delete=models.CASCADE, related_name="black_board")
+
+class News(models.Model):
+
+    black_board = models.ForeignKey(BlackBoard, on_delete=models.CASCADE, related_name="news")
 
 class WhiteBoard(models.Model):
 
@@ -32,8 +36,12 @@ class Chatroom(models.Model):
 
 class Quize(models.Model):
 
-    _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="quizes")
+    _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="class_quizes")
+    author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_quizes")
+    # participant = models.ManyToManyField(UserProfile, related_name="participant_quizes")
 
 class Question(models.Model):
 
-    quiz = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
+    quize = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
+    
+    grade = models.IntegerField()
