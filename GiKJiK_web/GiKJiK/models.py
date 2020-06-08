@@ -14,6 +14,10 @@ class UserProfile(models.Model):
     password = models.CharField(max_length=225)
     photo = models.ImageField(max_length=225, blank=True)
 
+    @property
+    def full_name(self):
+        return self.first_name + " " + self.last_name
+
 class Class(models.Model):
 
     owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="owner_classes")
