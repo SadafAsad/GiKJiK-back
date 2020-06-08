@@ -19,5 +19,6 @@ from GiKJiK.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('user/create/', UserProfileCreateView.as_view(), name="user_create"),
     path('class/create/', ClassCreateView.as_view(), name="class_create"),
 ]

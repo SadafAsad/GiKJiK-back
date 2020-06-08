@@ -1,22 +1,25 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
+from GiKJiK.models import (News, Class, UserProfile)
 
-from GiKJiK.models import (News, Class)
-# from cafepay.api_v1.helpers import get_cafe_simple_json, get_cafe_info_serializer, \
-#     get_user_profile_basic_info_serializer
+class UserProfileCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['pk',
+                  'username',
+                  'email',
+                  'password', ]
 
-
-def simple_user_profile_json(user_profile):
-    return {
-        'pk': user_profile.pk,
-        'username': user_profile.django_user.username,
-        'full_name': user_profile.full_name
-    }
+    # def create(self, validated_data):
+    #     django_user = User.objects.create_user(username=validated_data.get('username'), password=validated_data.get('password'))
+    #     user_profile = UserProfile.ob
+    #     return user_profile
 
 class ClassCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
-        fields = ['pk', 'name', 'class_id', 'owner', ]
-        extra_kwargs = {'owner': {'read_only': True}}
+        fields = ['pk', 'name', 'class_id', ]
+        # extra_kwargs = {'owner': {'read_only': True}}
 
 class NewsSerializer(serializers.ModelSerializer):
 
