@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from GiKJiK_web.consts import (QuizConsts, AnswerConsts)
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -39,21 +40,11 @@ class Chatroom(models.Model):
 
 class Quize(models.Model):
 
-    MULTIPLE_CHOICE = '0'
-    SHORT_ANSWER = '1'
-    BOTH = '2'
-
-    types = (
-        (MULTIPLE_CHOICE, "Multiple Choice"),
-        (SHORT_ANSWER, "Short Answer"),
-        (BOTH, "Both")
-    )
-
     _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="class_quizes")
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_quizes")
 
     date = models.DateTimeField(auto_now=True)
-    q_type = models.CharField(choices=types)
+    q_type = models.CharField(choices=QuizConsts.types)
 
 class Question(models.Model):
 
@@ -68,3 +59,12 @@ class Grade(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_grades")
 
     grade = models.IntegerField()
+
+class Answer(models.Model):
+
+    student = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="std_answers")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_answers")
+
+    answer = models.TextField(blank=True)
+    ans_type = models.CharField(choices=AnswerConsts.types)
+    ans_state = models.CharField(choices=AnswerConsts.states, default=AnswerConsts.NOT_ANSWERED)
