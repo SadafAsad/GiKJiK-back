@@ -29,6 +29,7 @@ class News(models.Model):
 
     title = models.CharField(max_length=225, blank=False)
     description = models.TextField(blank=True)
+    date = models.DateTimeField(auto_now=True)
 
 class WhiteBoard(models.Model):
 
@@ -52,6 +53,10 @@ class Question(models.Model):
 
     problem = models.CharField(blank=False)
     point = models.IntegerField()
+    choice_1 = models.CharField(blank=True)
+    choice_2 = models.CharField(blank=True)
+    choice_3 = models.CharField(blank=True)
+    choice_4 = models.CharField(blank=True)
 
 class Grade(models.Model):
 
