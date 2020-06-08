@@ -48,9 +48,11 @@ class Question(models.Model):
 
     q_type = models.CharField(choices=consts.QuestionConsts.types)
     problem = models.CharField(blank=False)
-    grade = models.IntegerField()
+    point = models.IntegerField()
 
 class Grade(models.Model):
 
     student = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="std_grades")
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_grades")
+
+    grade = models.IntegerField()
