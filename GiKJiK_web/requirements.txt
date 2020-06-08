@@ -1,1 +1,28 @@
-1. 
+1. create class
+2. list e class aei ke ozvesh hast ro bebine
+3. class ro ba class_id search kone
+4. ozve class beshe
+5. class ro hazf kone
+6. varede class beshe
+7. az class biyad biroon
+8. user betoone list e news haye class ro bebine
+
+9. owner betoone teacher taein kone
+10. teacher betoone student add kone
+11. owner va teacher be blackboard add kone
+12. teacher be whiteboard
+13. owner betoone class pak kone
+14. teacher betoone student kick kone
+15. teacher betoone quiz besaze
+16. teacher betoone quiz pak kone
+17. teacher class ro online/offline kone
+18. teacher betoone nomre bede
+19. teacher betoone nomre ha ro bebine
+20. teacher betoone list e nomre haye student haye har quiz ro bebine
+
+21. student betoone quiz bede
+22. student betoone list e quiz ha ro bebine
+23. student betoone nomre quiz hash ro bebine
+24. student betoone nomre class esh ro bebine
+
+--- system betoone khodkar soalaye testi ro check kone

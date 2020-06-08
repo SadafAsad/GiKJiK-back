@@ -9,8 +9,9 @@ class UserProfile(models.Model):
 
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255, blank=False, null=False, primary_key=True)
+    email = models.EmailField(max_length=255, blank=False, null=False, unique=True)
     photo = models.ImageField(max_length=225, blank=True)
+    # user bayad ye class ham dashte bashe
 
     @property
     def full_name(self):
@@ -23,7 +24,7 @@ class Class(models.Model):
     student = models.ManyToManyField(UserProfile, related_name="member_classes", blank=True)
 
     name = models.CharField(max_length=225, blank=False)
-    class_id = models.CharField(max_length=225, primary_key=True, blank=False, null=False)
+    class_id = models.CharField(max_length=225, unique=True, blank=False, null=False)
     state = models.CharField(choices=ClassConsts.states, default=ClassConsts.OFFLINE)
 
 class News(models.Model):
@@ -55,11 +56,14 @@ class Question(models.Model):
     quize = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
 
     problem = models.CharField(blank=False)
+    solution = models.CharField(blank=True)
     point = models.IntegerField()
-    choice_1 = models.CharField(blank=True)
-    choice_2 = models.CharField(blank=True)
-    choice_3 = models.CharField(blank=True)
-    choice_4 = models.CharField(blank=True)
+
+class Choice(models.Model):
+
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="choices")
+
+    description = models.CharField()
 
 class Grade(models.Model):
 
