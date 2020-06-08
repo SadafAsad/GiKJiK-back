@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from rest_framework import generics
+from GiKJiK.serializers import (ClassCreateSerializer)
 
 # Create your views here.
 class ClassCreateView(generics.CreateAPIView):
-    permission_classes = (CanCreateMenu,)
-    serializer_class = MenuCSerializer
+    serializer_class = ClassCreateSerializer
 
     def perform_create(self, serializer):
-        serializer.save(cafe=get_object_or_404(Cafe, pk=self.kwargs.get('cafe_id')),
-                        staff=self.request.user.user_profile)
+        serializer.save(owner=self.request.user.user_profile)
