@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from GiKJiK.consts import (QuizConsts, AnswerConsts)
+from GiKJiK.consts import (QuizConsts, AnswerConsts, ClassConsts)
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -24,6 +24,7 @@ class Class(models.Model):
 
     name = models.CharField(max_length=225)
     class_id = models.CharField(max_length=225, primary_key=True, blank=False, null=False)
+    state = models.CharField(choices=ClassConsts.states, default=ClassConsts.OFFLINE)
 
 class News(models.Model):
 

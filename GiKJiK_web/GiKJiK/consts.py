@@ -28,7 +28,7 @@ class AnswerConsts:
         (NOT_ANSWERED, "Not Answered")
     )
 
-class CLassConsts:
+class ClassConsts:
     ONLINE = '0'
     OFFLINE = '1'
     PAUSED = '2'
