@@ -77,7 +77,6 @@ class Answer(models.Model):
     student = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="std_answers")
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_answers")
 
-    answer = models.TextField(blank=True)
+    answer = models.CharField(blank=True)
     ans_type = models.CharField(choices=AnswerConsts.types)
     ans_state = models.CharField(choices=AnswerConsts.states, default=AnswerConsts.NOT_ANSWERED)
-    # soale testi
