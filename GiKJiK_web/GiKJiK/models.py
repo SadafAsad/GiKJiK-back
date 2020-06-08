@@ -15,8 +15,8 @@ class UserProfile(models.Model):
 class Class(models.Model):
 
     owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="owner_classes")
-    # teacher = models.ManyToManyField(UserProfile, related_name="teacher_classes")
-    # member = models.ManyToManyField(UserProfile, related_name="member_classes")
+    teacher = models.ManyToManyField(UserProfile, related_name="teacher_classes", blank=True)
+    member = models.ManyToManyField(UserProfile, related_name="member_classes", blank=True)
     
 class BlackBoard(models.Model):
 
@@ -38,10 +38,10 @@ class Quize(models.Model):
 
     _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="class_quizes")
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_quizes")
-    # participant = models.ManyToManyField(UserProfile, related_name="participant_quizes")
+    participant = models.ManyToManyField(UserProfile, related_name="participant_quizes", blank=True)
 
 class Question(models.Model):
 
     quize = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
-    
+
     grade = models.IntegerField()
