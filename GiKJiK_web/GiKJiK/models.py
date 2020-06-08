@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from GiKJiK_web import consts
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -45,6 +46,7 @@ class Question(models.Model):
 
     quize = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
 
+    q_type = models.CharField(choices=consts.QuestionConsts.types)
     problem = models.CharField(blank=False)
     grade = models.IntegerField()
 
