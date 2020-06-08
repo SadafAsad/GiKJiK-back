@@ -9,9 +9,7 @@ class UserProfile(models.Model):
 
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    username = models.CharField(max_length=225, unique=True)
     email = models.EmailField(max_length=255, blank=False, null=False, primary_key=True)
-    password = models.CharField(max_length=225)
     photo = models.ImageField(max_length=225, blank=True)
 
     @property
