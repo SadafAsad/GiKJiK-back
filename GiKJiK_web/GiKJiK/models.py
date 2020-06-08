@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     username = models.CharField(max_length=225, unique=True)
-    email = models.EmailField(max_length=255, blank=True, null=True, primary_key=True)
+    email = models.EmailField(max_length=255, blank=False, null=False, primary_key=True)
     password = models.CharField(max_length=225)
 
 class Class(models.Model):
@@ -17,14 +17,16 @@ class Class(models.Model):
     owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="owner_classes")
     teacher = models.ManyToManyField(UserProfile, related_name="teacher_classes", blank=True)
     member = models.ManyToManyField(UserProfile, related_name="member_classes", blank=True)
-    
-class BlackBoard(models.Model):
 
-    _class = models.OneToOneField(Class, on_delete=models.CASCADE, related_name="black_board")
+    name = models.CharField(max_length=225)
+    class_id = models.CharField(max_length=225, primary_key=True, blank=False, null=False)
 
 class News(models.Model):
 
-    black_board = models.ForeignKey(BlackBoard, on_delete=models.CASCADE, related_name="news")
+    _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="news")
+
+    title = models.CharField(max_length=225, blank=False)
+    description = models.TextField(blank=True)
 
 class WhiteBoard(models.Model):
 
@@ -42,6 +44,9 @@ class Quize(models.Model):
 class Question(models.Model):
 
     quize = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
+
+    problem = models.CharField(blank=False)
+    grade = models.IntegerField()
 
 class Grade(models.Model):
 
