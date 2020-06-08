@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from GiKJiK_web.consts import (QuizConsts, AnswerConsts)
+from GiKJiK.consts import (QuizConsts, AnswerConsts)
 
 # Create your models here.
 class UserProfile(models.Model):
