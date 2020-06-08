@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from GiKJiK_web import consts
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -12,6 +11,7 @@ class UserProfile(models.Model):
     username = models.CharField(max_length=225, unique=True)
     email = models.EmailField(max_length=255, blank=False, null=False, primary_key=True)
     password = models.CharField(max_length=225)
+    photo = models.ImageField(max_length=225, blank=True)
 
 class Class(models.Model):
 
@@ -39,14 +39,26 @@ class Chatroom(models.Model):
 
 class Quize(models.Model):
 
+    MULTIPLE_CHOICE = '0'
+    SHORT_ANSWER = '1'
+    BOTH = '2'
+
+    types = (
+        (MULTIPLE_CHOICE, "Multiple Choice"),
+        (SHORT_ANSWER, "Short Answer"),
+        (BOTH, "Both")
+    )
+
     _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="class_quizes")
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_quizes")
+
+    date = models.DateTimeField(auto_now=True)
+    q_type = models.CharField(choices=types)
 
 class Question(models.Model):
 
     quize = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
 
-    q_type = models.CharField(choices=consts.QuestionConsts.types)
     problem = models.CharField(blank=False)
     point = models.IntegerField()
 
