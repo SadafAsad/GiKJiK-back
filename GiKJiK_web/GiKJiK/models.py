@@ -38,10 +38,12 @@ class Quize(models.Model):
 
     _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="class_quizes")
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_quizes")
-    participant = models.ManyToManyField(UserProfile, related_name="participant_quizes", blank=True)
 
 class Question(models.Model):
 
     quize = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
 
-    grade = models.IntegerField()
+class Grade(models.Model):
+
+    student = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="std_grades")
+    question = models.Model(Question, on_delete=models.CASCADE, related_name="question_grades")
