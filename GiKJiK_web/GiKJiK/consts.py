@@ -27,3 +27,14 @@ class AnswerConsts:
         (WRONG, "Wrong"),
         (NOT_ANSWERED, "Not Answered")
     )
+
+class CLassConsts:
+    ONLINE = '0'
+    OFFLINE = '1'
+    PAUSED = '2'
+
+    states = (
+        (ONLINE, "Online"),
+        (OFFLINE, "Offline"),
+        (PAUSED, "Paused")
+    )
