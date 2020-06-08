@@ -22,7 +22,7 @@ class Class(models.Model):
     teacher = models.ManyToManyField(UserProfile, related_name="teacher_classes", blank=True)
     student = models.ManyToManyField(UserProfile, related_name="member_classes", blank=True)
 
-    name = models.CharField(max_length=225)
+    name = models.CharField(max_length=225, blank=False)
     class_id = models.CharField(max_length=225, primary_key=True, blank=False, null=False)
     state = models.CharField(choices=ClassConsts.states, default=ClassConsts.OFFLINE)
 
@@ -76,3 +76,4 @@ class Answer(models.Model):
     answer = models.TextField(blank=True)
     ans_type = models.CharField(choices=AnswerConsts.types)
     ans_state = models.CharField(choices=AnswerConsts.states, default=AnswerConsts.NOT_ANSWERED)
+    # soale testi

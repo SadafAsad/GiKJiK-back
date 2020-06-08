@@ -31,10 +31,8 @@ class AnswerConsts:
 class ClassConsts:
     ONLINE = '0'
     OFFLINE = '1'
-    PAUSED = '2'
 
     states = (
         (ONLINE, "Online"),
-        (OFFLINE, "Offline"),
-        (PAUSED, "Paused")
+        (OFFLINE, "Offline")
     )
