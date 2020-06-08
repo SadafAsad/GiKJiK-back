@@ -53,4 +53,4 @@ class Question(models.Model):
 class Grade(models.Model):
 
     student = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="std_grades")
-    question = models.Model(Question, on_delete=models.CASCADE, related_name="question_grades")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_grades")
