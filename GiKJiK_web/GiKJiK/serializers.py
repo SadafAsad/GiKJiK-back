@@ -15,7 +15,7 @@ def simple_user_profile_json(user_profile):
 class ClassCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
-        fields = ['pk', 'name', 'class_id', 'owner']
+        fields = ['pk', 'name', 'class_id', 'owner', ]
         extra_kwargs = {'owner': {'read_only': True}}
 
 class NewsSerializer(serializers.ModelSerializer):

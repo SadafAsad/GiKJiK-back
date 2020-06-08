@@ -6,12 +6,12 @@ from GiKJiK.consts import (QuizConsts, AnswerConsts, ClassConsts)
 class UserProfile(models.Model):
 
     django_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
+    in_class = models.ForeignKey("Class", on_delete=models.CASCADE, related_name="users")
 
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, blank=False, null=False, unique=True)
     photo = models.ImageField(max_length=225, blank=True)
-    # user bayad ye class ham dashte bashe
 
     @property
     def full_name(self):
@@ -25,7 +25,7 @@ class Class(models.Model):
 
     name = models.CharField(max_length=225, blank=False)
     class_id = models.CharField(max_length=225, unique=True, blank=False, null=False)
-    state = models.CharField(choices=ClassConsts.states, default=ClassConsts.OFFLINE)
+    state = models.CharField(max_length=225, choices=ClassConsts.states, default=ClassConsts.OFFLINE)
 
 class News(models.Model):
 
@@ -49,21 +49,21 @@ class Quize(models.Model):
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_quizes")
 
     date = models.DateTimeField(auto_now=True)
-    q_type = models.CharField(choices=QuizConsts.types)
+    q_type = models.CharField(max_length=225, choices=QuizConsts.types)
 
 class Question(models.Model):
 
     quize = models.ForeignKey(Quize, on_delete=models.CASCADE, related_name="questions")
 
-    problem = models.CharField(blank=False)
-    solution = models.CharField(blank=True)
+    problem = models.CharField(max_length=225, blank=False)
+    solution = models.CharField(max_length=225, blank=True)
     point = models.IntegerField()
 
 class Choice(models.Model):
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="choices")
 
-    description = models.CharField()
+    description = models.CharField(max_length=225, )
 
 class Grade(models.Model):
 
@@ -77,6 +77,6 @@ class Answer(models.Model):
     student = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="std_answers")
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_answers")
 
-    answer = models.CharField(blank=True)
-    ans_type = models.CharField(choices=AnswerConsts.types)
-    ans_state = models.CharField(choices=AnswerConsts.states, default=AnswerConsts.NOT_ANSWERED)
+    answer = models.CharField(max_length=225, blank=True)
+    ans_type = models.CharField(max_length=225, choices=AnswerConsts.types)
+    ans_state = models.CharField(max_length=225, choices=AnswerConsts.states, default=AnswerConsts.NOT_ANSWERED)
