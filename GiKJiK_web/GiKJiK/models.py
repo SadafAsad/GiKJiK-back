@@ -53,6 +53,7 @@ class Quize(models.Model):
     date = models.DateTimeField(auto_now=True)
     q_type = models.CharField(max_length=225, choices=QuizConsts.types)
     deadline = models.DateTimeField(auto_now=False)
+    state = models.CharField(max_length=225, choices=QuizConsts.states)
 
 class Question(models.Model):
 
