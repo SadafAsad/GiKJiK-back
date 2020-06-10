@@ -1,15 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
 from GiKJiK.consts import (QuizConsts, AnswerConsts, ClassConsts)
 
 # Create your models here.
 class UserProfile(models.Model):
 
-    django_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
     online_in = models.ForeignKey("Class", on_delete=models.CASCADE, related_name="online_users", null=True)
 
-    # username = models.CharField(max_length=225, unique=True)
-    # password = models.CharField(max_length=225, blank=False, null=False)
+    username = models.CharField(max_length=225, unique=True)
+    password = models.CharField(max_length=225, blank=False, null=False)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, blank=False, null=False, unique=True)

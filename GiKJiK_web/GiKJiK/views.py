@@ -6,11 +6,10 @@ from GiKJiK.serializers import (ClassCreateSerializer, UserProfileCreateSerializ
 # Create your views here.
 
 class UserProfileCreateView(generics.CreateAPIView):
-    serializer_class = UserProfileCreateSerializer
+    serializer_class = UserProfileCr`eateSerializer
 
     def perform_create(self, serializer):
-        django_user = User.objects.create_user(username=self.request.get('username'), password=self.request.get('password'))
-        serializer.save(django_user=django_user)
+        serializer_class.save()
 
 class ClassCreateView(generics.CreateAPIView):
     serializer_class = ClassCreateSerializer

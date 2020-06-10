@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
 from GiKJiK.models import (News, Class, UserProfile)
 
 class UserProfileCreateSerializer(serializers.ModelSerializer):
@@ -9,11 +8,6 @@ class UserProfileCreateSerializer(serializers.ModelSerializer):
                   'username',
                   'email',
                   'password', ]
-
-    # def create(self, validated_data):
-    #     django_user = User.objects.create_user(username=validated_data.get('username'), password=validated_data.get('password'))
-    #     user_profile = UserProfile.ob
-    #     return user_profile
 
 class ClassCreateSerializer(serializers.ModelSerializer):
     class Meta:
