@@ -6,7 +6,7 @@ class UserProfile(models.Model):
 
     online_in = models.ForeignKey("Class", on_delete=models.CASCADE, related_name="online_users", null=True)
 
-    username = models.CharField(max_length=225, unique=True)
+    username = models.CharField(max_length=225, unique=True, primary_key=True)
     password = models.CharField(max_length=225, blank=False, null=False)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)

@@ -4,8 +4,7 @@ from GiKJiK.models import (News, Class, UserProfile)
 class UserProfileCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['pk',
-                  'username',
+        fields = ['username',
                   'email',
                   'password', ]
 
