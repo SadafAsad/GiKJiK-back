@@ -9,6 +9,14 @@ class QuizConsts:
         (BOTH, "Both")
     )
 
+    NOT_OVERDUE = '0'
+    OVERDUE = '1'
+
+    states = (
+        (NOT_OVERDUE, "Not Overdue"),
+        (OVERDUE, "Overdue")
+    )
+
 class AnswerConsts:
     MULTIPLE_CHOICE = '0'
     SHORT_ANSWER = '1'
