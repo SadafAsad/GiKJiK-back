@@ -6,10 +6,10 @@ from GiKJiK.serializers import (ClassCreateSerializer, UserProfileCreateSerializ
 # Create your views here.
 
 class UserProfileCreateView(generics.CreateAPIView):
-    serializer_class = UserProfileCr`eateSerializer
+    serializer_class = UserProfileCreateSerializer
 
     def perform_create(self, serializer):
-        serializer_class.save()
+        serializer.save()
 
 class ClassCreateView(generics.CreateAPIView):
     serializer_class = ClassCreateSerializer
