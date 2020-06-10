@@ -15,4 +15,4 @@ class ClassCreateView(generics.CreateAPIView):
     serializer_class = ClassCreateSerializer
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user.user_profile)
+        serializer.save(owner=self.request.user)
