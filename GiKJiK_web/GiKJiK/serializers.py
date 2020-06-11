@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from GiKJiK.models import (News, Class, UserProfile)
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,6 +9,9 @@ class UserCreateSerializer(serializers.ModelSerializer):
         fields = ['username',
                   'email',
                   'password', ]
+    
+    def validate_password(self, value: str) -> str:
+        return make_password(value)
 
 class UserProfileListSerializer(serializers.ModelSerializer):
     class Meta:
