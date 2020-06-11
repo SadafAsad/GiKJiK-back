@@ -1,12 +1,18 @@
 from rest_framework import serializers
 from GiKJiK.models import (News, Class, UserProfile)
+from django.contrib.auth.models import User
 
-class UserProfileCreateSerializer(serializers.ModelSerializer):
+class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserProfile
+        model = User
         fields = ['username',
                   'email',
                   'password', ]
+
+class UserProfileListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
 
 class ClassCreateSerializer(serializers.ModelSerializer):
     class Meta:

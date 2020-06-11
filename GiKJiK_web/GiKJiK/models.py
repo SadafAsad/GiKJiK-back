@@ -1,21 +1,24 @@
 from django.db import models
 from GiKJiK.consts import (QuizConsts, AnswerConsts, ClassConsts)
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
-# Create your models here.
 class UserProfile(models.Model):
 
+    django_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
     online_in = models.ForeignKey("Class", on_delete=models.CASCADE, related_name="online_users", null=True)
 
-    username = models.CharField(max_length=225, unique=True, primary_key=True)
-    password = models.CharField(max_length=225, blank=False, null=False)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255, blank=False, null=False, unique=True)
     photo = models.ImageField(max_length=225, blank=True)
 
-    @property
-    def full_name(self):
-        return self.first_name + " " + self.last_name
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            UserProfile.objects.create(django_user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.user_profile.save()
 
 class Class(models.Model):
 
