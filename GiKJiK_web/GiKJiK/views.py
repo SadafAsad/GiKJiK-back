@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from GiKJiK.models import UserProfile, Class
 from GiKJiK.serializers import *
+from django.shortcuts import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 
 class SignUpView(generics.CreateAPIView):
     serializer_class = UserCreateSerializer
@@ -27,3 +29,10 @@ class ClassListView(generics.ListAPIView):
     def get_queryset(self):
         return Class.objects.all()
     
+class ClassRetrieveView(generics.RetrieveAPIView):
+    serializer_class = ClassListSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_object(self):
+        return get_object_or_404(Class, class_id=self.kwargs.get('class_id'))
+
