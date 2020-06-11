@@ -21,8 +21,12 @@ class UserProfileListSerializer(serializers.ModelSerializer):
 class ClassCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
-        fields = ['pk', 'name', 'class_id', ]
-        # extra_kwargs = {'owner': {'read_only': True}}
+        fields = ['name', 'class_id', ]
+
+class ClassListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Class
+        fields = '__all__'
 
 class NewsSerializer(serializers.ModelSerializer):
 

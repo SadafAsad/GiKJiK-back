@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from GiKJiK.models import UserProfile
-from GiKJiK.serializers import (ClassCreateSerializer, UserCreateSerializer, UserProfileListSerializer)
+from GiKJiK.models import UserProfile, Class
+from GiKJiK.serializers import *
 
 class SignUpView(generics.CreateAPIView):
     serializer_class = UserCreateSerializer
@@ -19,4 +19,11 @@ class ClassCreateView(generics.CreateAPIView):
     serializer_class = ClassCreateSerializer
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user.user_profile)
+
+class ClassListView(generics.ListAPIView):
+    serializer_class = ClassListSerializer
+
+    def get_queryset(self):
+        return Class.objects.all()
+    
