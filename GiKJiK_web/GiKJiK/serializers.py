@@ -27,11 +27,3 @@ class ClassListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
         fields = '__all__'
-
-class NewsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = News
-        fields = ['pk', '_classes', 'title', 'description', 'date']
-
-# sign up kardan --> username, email, password
