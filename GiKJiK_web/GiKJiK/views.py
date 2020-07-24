@@ -36,3 +36,10 @@ class ClassRetrieveView(generics.RetrieveAPIView):
     def get_object(self):
         return get_object_or_404(Class, class_id=self.kwargs.get('class_id'))
 
+class UserRetrieveView(generics.RetrieveAPIView):
+    serializer_class = UserProfileListSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return user.user_profile
