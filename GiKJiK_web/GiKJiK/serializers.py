@@ -27,3 +27,13 @@ class ClassListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
         fields = '__all__'
+
+class ClassAddTeacherSerializer(serializers.ModelSerializer):
+    teacher = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True)
+
+    class Meta:
+        model = Class
+        fields = ['class_id', 'teacher', 'teachers', ]
+        extra_kwargs = {
+            'teachers': {'read_only': True}
+        }
