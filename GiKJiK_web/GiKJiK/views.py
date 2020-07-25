@@ -98,4 +98,17 @@ class ClassNewsListView(generics.ListAPIView):
     def get_queryset(self):
         t_class = get_object_or_404(Class, class_id=self.kwargs.get('class_id'))
         return t_class.news.all()
-        
+
+class ClassAddRemoveStudentView(generics.UpdateAPIView):
+    permission_classes = (IsAuthenticated, IsClassTeacher,)
+    queryset = Class.objects.all()
+    serializer_class = ClassAddRemoveStudentSerializer
+
+    lookup_field = 'class_id'
+    lookup_url_kwarg = 'class_id'
+
+    def perform_update(self, serializer):
+        if serializer.validated_data.get('action') == self.serializer_class.ADD:
+            serializer.instance.students.add(serializer.validated_data.get('student'))
+        else:
+            serializer.instance.students.remove(serializer.validated_data.get('student'))

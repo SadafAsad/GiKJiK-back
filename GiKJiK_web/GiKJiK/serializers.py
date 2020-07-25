@@ -69,3 +69,23 @@ class NewsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
+
+class ClassAddRemoveStudentSerializer(serializers.ModelSerializer):
+    ADD = "ADD"
+    REMOVE = "REMOVE"
+
+    choices = (ADD,
+               REMOVE)
+
+    student = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True)
+    action = serializers.ChoiceField(choices=choices, write_only=True)
+
+    class Meta:
+        model = Class
+        fields = ['student', 'action', ]
+        extra_kwargs = {
+            'students': {'read_only': True}
+        }
+
+    def validate_student(self, student):
+        return student.user_profile
