@@ -28,12 +28,21 @@ class ClassListSerializer(serializers.ModelSerializer):
         model = Class
         fields = '__all__'
 
-class ClassAddTeacherSerializer(serializers.ModelSerializer):
+class ClassAddRemoveTeacherSerializer(serializers.ModelSerializer):
+    ADD = "ADD"
+    REMOVE = "REMOVE"
+
+    choices = (ADD,
+               REMOVE)
+
     teacher = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True)
 
     class Meta:
         model = Class
-        fields = ['class_id', 'teacher', 'teachers', ]
+        fields = ['class_id', 'teacher', 'action', 'teachers', ]
         extra_kwargs = {
             'teachers': {'read_only': True}
         }
+
+    def validate_teacher(self, teacher):
+        return teacher

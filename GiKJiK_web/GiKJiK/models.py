@@ -23,8 +23,8 @@ class UserProfile(models.Model):
 class Class(models.Model):
 
     owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="owner_classes")
-    teacher = models.ManyToManyField(UserProfile, related_name="teacher_classes", blank=True)
-    student = models.ManyToManyField(UserProfile, related_name="member_classes", blank=True)
+    teachers = models.ManyToManyField(UserProfile, related_name="teacher_classes", blank=True)
+    students = models.ManyToManyField(UserProfile, related_name="member_classes", blank=True)
 
     name = models.CharField(max_length=225, blank=False)
     class_id = models.CharField(max_length=225, unique=True, blank=False, null=False, primary_key=True)

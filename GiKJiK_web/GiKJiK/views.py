@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import generics
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
@@ -14,9 +13,7 @@ class SignUpView(generics.CreateAPIView):
 
 class UserProfileListView(generics.ListAPIView):
     serializer_class = UserProfileListSerializer
-
-    def get_queryset(self):
-        return UserProfile.objects.all()
+    queryset = UserProfile.objects.all()
 
 class ClassCreateView(generics.CreateAPIView):
     serializer_class = ClassCreateSerializer
@@ -26,9 +23,7 @@ class ClassCreateView(generics.CreateAPIView):
 
 class ClassListView(generics.ListAPIView):
     serializer_class = ClassListSerializer
-
-    def get_queryset(self):
-        return Class.objects.all()
+    queryset = Class.objects.all()
     
 class ClassRetrieveView(generics.RetrieveAPIView):
     serializer_class = ClassListSerializer
@@ -45,13 +40,16 @@ class UserRetrieveView(generics.RetrieveAPIView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return user.user_profile
 
-class ClassAddTeacherView(generics.UpdateAPIView):
+class ClassAddRemoveTeacherView(generics.UpdateAPIView):
     permission_classes = (IsAuthenticated, IsClassOwner,)
     queryset = Class.objects.all()
-    serializer_class = ClassAddTeacherSerializer
+    serializer_class = ClassAddRemoveTeacherSerializer
 
     lookup_field = 'class_id'
     lookup_url_kwarg = 'class_id'
 
     def perform_update(self, serializer):
-        serializer.instance.teachers.add(serializer.validated_data.get('teacher'))
+        if serializer.validated_data.get('action') == self.serializer_class.ADD:
+            serializer.instance.teachers.add(serializer.validated_data.get('teacher'))
+        else:
+            serializer.instance.teachers.remove(serializer.validated_data.get('teacher'))
