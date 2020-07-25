@@ -53,3 +53,15 @@ class ClassAddRemoveTeacherView(generics.UpdateAPIView):
             serializer.instance.teachers.add(serializer.validated_data.get('teacher'))
         else:
             serializer.instance.teachers.remove(serializer.validated_data.get('teacher'))
+
+class ClassJoinView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Class.objects.all()
+    serializer_class = ClassJoinSerializer
+
+    lookup_field = 'class_id'
+    lookup_url_kwarg = 'class_id'
+
+    def perform_update(self, serializer):
+        serializer.instance.students.add(self.request.user.user_profile)
+

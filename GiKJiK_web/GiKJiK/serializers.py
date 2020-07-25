@@ -47,3 +47,12 @@ class ClassAddRemoveTeacherSerializer(serializers.ModelSerializer):
 
     def validate_teacher(self, teacher):
         return teacher.user_profile
+
+class ClassJoinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Class
+        fields = ['students', ]
+        extra_kwargs = {
+            'students': {'read_only': True}
+        }
+        
