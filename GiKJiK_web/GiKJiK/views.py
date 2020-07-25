@@ -65,3 +65,10 @@ class ClassJoinView(generics.UpdateAPIView):
     def perform_update(self, serializer):
         serializer.instance.students.add(self.request.user.user_profile)
 
+class UserClassListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ClassListSerializer
+
+    def get_queryset(self):
+        user = self.request.user.user_profile
+        return user.member_classes.all()
