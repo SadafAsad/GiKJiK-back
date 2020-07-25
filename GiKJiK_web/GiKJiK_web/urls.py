@@ -32,4 +32,5 @@ urlpatterns = [
     path('class/<str:class_id>/join/', ClassJoinView.as_view(), name="class_join"),
     path('user/class/list/', UserClassListView.as_view(), name="user_class_list"),
     path('class/<str:class_id>/remove/', ClassRemoveView.as_view(), name="class_remove"),
+    path('class/<str:class_id>/add/news/', NewsCreate.as_view(), name="class_add_news"),
 ]

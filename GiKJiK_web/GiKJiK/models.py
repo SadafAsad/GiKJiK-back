@@ -33,6 +33,7 @@ class Class(models.Model):
 class News(models.Model):
 
     _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="news")
+    author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_news")
 
     title = models.CharField(max_length=225, blank=False)
     description = models.TextField(blank=True)

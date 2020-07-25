@@ -83,3 +83,10 @@ class ClassRemoveView(generics.UpdateAPIView):
 
     def perform_update(self, serializer):
         serializer.instance.students.remove(self.request.user.user_profile)
+
+class NewsCreate(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated, CanCreateNews, )
+    serializer_class = NewsCreateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user.user_profile, _class=get_object_or_404(Class, class_id=self.kwargs.get('class_id')))

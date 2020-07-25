@@ -55,3 +55,12 @@ class ClassJoinRemoveSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'students': {'read_only': True}
         }
+
+class NewsCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = News
+        fields = '__all__'
+        extra_kwargs = {
+            '_class': {'read_only': True},
+            'author': {'read_only': True}
+        }
