@@ -28,5 +28,5 @@ urlpatterns = [
     path('class/list/', ClassListView.as_view(), name="class_list"),
     path('class/<str:class_id>/search/', ClassRetrieveView.as_view(), name="class_search"),
     path('user/<str:username>/search/', UserRetrieveView.as_view(), name="user_search"),
-    path('class/<str:class_id>/add/teacher/', ClassAddRemoveTeacherView.as_view(), name="class_ar_teacher"),
+    path('class/<str:class_id>/teacher/add-remove/', ClassAddRemoveTeacherView.as_view(), name="class_ar_teacher"),
 ]

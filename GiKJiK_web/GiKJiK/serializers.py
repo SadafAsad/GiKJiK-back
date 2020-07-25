@@ -36,13 +36,14 @@ class ClassAddRemoveTeacherSerializer(serializers.ModelSerializer):
                REMOVE)
 
     teacher = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True)
+    action = serializers.ChoiceField(choices=choices, write_only=True)
 
     class Meta:
         model = Class
-        fields = ['class_id', 'teacher', 'action', 'teachers', ]
+        fields = ['teacher', 'action', ]
         extra_kwargs = {
             'teachers': {'read_only': True}
         }
 
     def validate_teacher(self, teacher):
-        return teacher
+        return teacher.user_profile
