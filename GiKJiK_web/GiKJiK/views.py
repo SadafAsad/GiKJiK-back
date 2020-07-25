@@ -57,7 +57,7 @@ class ClassAddRemoveTeacherView(generics.UpdateAPIView):
 class ClassJoinView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Class.objects.all()
-    serializer_class = ClassJoinSerializer
+    serializer_class = ClassJoinRemoveSerializer
 
     lookup_field = 'class_id'
     lookup_url_kwarg = 'class_id'
@@ -72,3 +72,14 @@ class UserClassListView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user.user_profile
         return user.member_classes.all()
+
+class ClassRemoveView(generics.UpdateAPIView):
+    permission_classes = (IsAuthenticated, IsClassStudent, )
+    queryset = Class.objects.all()
+    serializer_class = ClassJoinRemoveSerializer
+
+    lookup_field = 'class_id'
+    lookup_url_kwarg = 'class_id'
+
+    def perform_update(self, serializer):
+        serializer.instance.students.remove(self.request.user.user_profile)
