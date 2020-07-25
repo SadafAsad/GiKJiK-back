@@ -64,3 +64,8 @@ class NewsCreateSerializer(serializers.ModelSerializer):
             '_class': {'read_only': True},
             'author': {'read_only': True}
         }
+
+class NewsListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = News
+        fields = '__all__'

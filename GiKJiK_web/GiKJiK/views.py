@@ -90,3 +90,12 @@ class NewsCreate(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user.user_profile, _class=get_object_or_404(Class, class_id=self.kwargs.get('class_id')))
+
+class ClassNewsListView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated, InClass, )
+    serializer_class = NewsListSerializer
+
+    def get_queryset(self):
+        t_class = get_object_or_404(Class, class_id=self.kwargs.get('class_id'))
+        return t_class.news.all()
+        
