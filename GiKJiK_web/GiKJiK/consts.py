@@ -1,14 +1,4 @@
 class QuizConsts:
-    MULTIPLE_CHOICE = '0'
-    SHORT_ANSWER = '1'
-    BOTH = '2'
-
-    types = (
-        (MULTIPLE_CHOICE, "Multiple Choice"),
-        (SHORT_ANSWER, "Short Answer"),
-        (BOTH, "Both")
-    )
-
     NOT_OVERDUE = '0'
     OVERDUE = '1'
 

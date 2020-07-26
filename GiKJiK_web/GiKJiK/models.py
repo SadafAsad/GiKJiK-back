@@ -53,7 +53,6 @@ class Quize(models.Model):
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_quizes")
 
     date = models.DateTimeField(auto_now=True)
-    q_type = models.CharField(max_length=225, choices=QuizConsts.types)
     deadline = models.DateTimeField(auto_now=False)
     state = models.CharField(max_length=225, choices=QuizConsts.states)
 
@@ -69,7 +68,7 @@ class Choice(models.Model):
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="choices")
 
-    description = models.CharField(max_length=225, )
+    description = models.CharField(max_length=225)
 
 class Grade(models.Model):
 
