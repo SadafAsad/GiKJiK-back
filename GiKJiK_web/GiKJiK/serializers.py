@@ -98,3 +98,11 @@ class QuizeCreateSerializer(serializers.ModelSerializer):
             '_class': {'read_only': True},
             'author': {'read_only': True}
         }
+
+class QuestionCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = '__all__'
+        extra_kwargs = {
+            'quize': {'read_only': True}
+        }

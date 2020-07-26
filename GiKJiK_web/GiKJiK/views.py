@@ -120,3 +120,11 @@ class QuizCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user.user_profile, _class=get_object_or_404(Class, class_id=self.kwargs.get('class_id')))
+
+class QuestionCreateView(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated, CanEditQuiz, )
+    queryset = Quize.objects.all()
+    serializer_class = QuestionCreateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(quize=get_object_or_404(Quize, pk=self.kwargs.get('quiz_id')))

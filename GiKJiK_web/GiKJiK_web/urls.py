@@ -36,4 +36,5 @@ urlpatterns = [
     path('class/<str:class_id>/blackboard/', ClassNewsListView.as_view(), name="class_newa"),
     path('class/<str:class_id>/student/add-remove/', ClassAddRemoveStudentView.as_view(), name="student_add_remove"),
     path('class/<str:class_id>/create/quiz/', QuizCreateView.as_view(), name="class_add_quiz"),
+    path('quiz/<int:quiz_id>/add/question/', QuestionCreateView.as_view(), name="quiz_add_question"),
 ]
