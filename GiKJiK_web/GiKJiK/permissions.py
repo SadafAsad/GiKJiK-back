@@ -57,7 +57,7 @@ class IsClassTeacher(permissions.BasePermission):
 
 class CanEditQuiz(permissions.BasePermission):
 
-    def has_permission(Self, request, view):
+    def has_permission(self, request, view):
         quiz = get_object_or_404(Quize, pk=view.kwargs.get('quiz_id'))
         user = request.user.user_profile
         return quiz.author == user
