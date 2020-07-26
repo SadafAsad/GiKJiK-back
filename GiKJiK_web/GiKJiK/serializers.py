@@ -106,3 +106,11 @@ class QuestionCreateSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'quize': {'read_only': True}
         }
+
+class ChoiceCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Choice
+        fields = '__all__'
+        extra_kwargs = {
+            'question': {'read_only': True}
+        }

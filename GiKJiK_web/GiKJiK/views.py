@@ -128,3 +128,11 @@ class QuestionCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(quize=get_object_or_404(Quize, pk=self.kwargs.get('quiz_id')))
+
+class ChoiceCreateView(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated, CanEditQuestion, )
+    queryset = Question.objects.all()
+    serializer_class = ChoiceCreateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(question=get_object_or_404(Question, pk=self.kwargs.get('question_id')))
