@@ -112,3 +112,11 @@ class ClassAddRemoveStudentView(generics.UpdateAPIView):
             serializer.instance.students.add(serializer.validated_data.get('student'))
         else:
             serializer.instance.students.remove(serializer.validated_data.get('student'))
+
+class QuizCreateView(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated, IsClassTeacher, )
+    queryset = Class.objects.all()
+    serializer_class = QuizeCreateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user.user_profile, _class=get_object_or_404(Class, class_id=self.kwargs.get('class_id')))

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from GiKJiK.models import (News, Class, UserProfile)
+from GiKJiK.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
@@ -89,3 +89,12 @@ class ClassAddRemoveStudentSerializer(serializers.ModelSerializer):
 
     def validate_student(self, student):
         return student.user_profile
+
+class QuizeCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quize
+        fields = '__all__'
+        extra_kwargs = {
+            '_class': {'read_only': True},
+            'author': {'read_only': True}
+        }
