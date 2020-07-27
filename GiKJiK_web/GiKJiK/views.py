@@ -164,3 +164,11 @@ class ClassChangeStateView(generics.UpdateAPIView):
     def perform_update(self, serializer):
         serializer.instance.state = serializer.validated_data.get('state')
         serializer.save()
+
+class ClassQuizListView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated, InClass, )
+    serializer_class = QuizeCreateSerializer
+
+    def get_queryset(self):
+        t_class = get_object_or_404(Class, class_id=self.kwargs.get('class_id'))
+        return t_class.class_quizes.all()
