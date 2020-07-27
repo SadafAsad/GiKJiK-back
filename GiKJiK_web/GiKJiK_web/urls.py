@@ -39,5 +39,5 @@ urlpatterns = [
     path('quiz/<int:quiz_id>/add/question/', QuestionCreateView.as_view(), name="quiz_add_question"),
     path('question/<int:question_id>/add/choice/', ChoiceCreateView.as_view(), name="question_add_choice"),
     path('quiz/<int:quiz_id>/delete/', QuizDeleteView.as_view(), name="quiz_delete"),
-    # path('test/', QuizListView.as_view(), name="test"),
+    path('class/<str:class_id>/delete/', ClassDeleteView.as_view(), name="class_delete"),
 ]

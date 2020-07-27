@@ -145,6 +145,10 @@ class QuizDeleteView(generics.DestroyAPIView):
     lookup_field = 'pk'
     lookup_url_kwarg = 'quiz_id'
 
-# class QuizListView(generics.ListAPIView):
-#     queryset = Quize.objects.all()
-#     serializer_class = QuizeCreateSerializer
+class ClassDeleteView(generics.DestroyAPIView):
+    permission_classes = (IsAuthenticated, IsClassOwner, )
+    queryset = Class.objects.all()
+    serializer_class = ClassListSerializer
+
+    lookup_field = 'class_id'
+    lookup_url_kwarg = 'class_id'
