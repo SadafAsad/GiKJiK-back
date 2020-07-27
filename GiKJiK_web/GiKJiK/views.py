@@ -136,3 +136,15 @@ class ChoiceCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(question=get_object_or_404(Question, pk=self.kwargs.get('question_id')))
+
+class QuizDeleteView(generics.DestroyAPIView):
+    permission_classes = (IsAuthenticated, CanEditQuiz, )
+    queryset = Quize.objects.all()
+    serializer_class = QuizeCreateSerializer
+
+    lookup_field = 'pk'
+    lookup_url_kwarg = 'quiz_id'
+
+# class QuizListView(generics.ListAPIView):
+#     queryset = Quize.objects.all()
+#     serializer_class = QuizeCreateSerializer
