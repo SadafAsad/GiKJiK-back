@@ -119,3 +119,12 @@ class ClassChangeStateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
         fields = ['state', ]
+
+class AnswerCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ['student', 'question', 'answer', ]
+        extra_kwargs = {
+            'student': {'read_only': True},
+            'question': {'read_only': True}
+        }

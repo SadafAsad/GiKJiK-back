@@ -83,5 +83,4 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_answers")
 
     answer = models.CharField(max_length=225, blank=True)
-    ans_type = models.CharField(max_length=225, choices=AnswerConsts.types)
     ans_state = models.CharField(max_length=225, choices=AnswerConsts.states, default=AnswerConsts.NOT_ANSWERED)

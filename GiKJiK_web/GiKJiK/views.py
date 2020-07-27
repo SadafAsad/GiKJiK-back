@@ -172,3 +172,23 @@ class ClassQuizListView(generics.ListAPIView):
     def get_queryset(self):
         t_class = get_object_or_404(Class, class_id=self.kwargs.get('class_id'))
         return t_class.class_quizes.all()
+
+class QuizQuestionsView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated, IsClassTeacher_or_Student_by_quiz, )
+    serializer_class = QuestionCreateSerializer
+
+    def get_queryset(self):
+        quiz = get_object_or_404(Quize, pk=self.kwargs.get('quiz_id'))
+        return quiz.questions.all()
+
+class CreateAnswerView(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated, IsClassStudent_by_question, )
+    queryset = Question.objects.all()
+    serializer_class = AnswerCreateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(question=get_object_or_404(Question, pk=self.kwargs.get('question_id')), student=self.request.user.user_profile)
+
+class Test(generics.ListAPIView):
+    serializer_class = QuizeCreateSerializer
+    queryset = Question.objects.all()

@@ -63,7 +63,22 @@ class CanEditQuiz(permissions.BasePermission):
         return quiz.author == user
 
 class CanEditQuestion(permissions.BasePermission):
+
     def has_permission(self, request, view):
         question = get_object_or_404(Question, pk=view.kwargs.get('question_id'))
         user = request.user.user_profile
         return question.quize.author == user
+
+class IsClassTeacher_or_Student_by_quiz(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        quiz = get_object_or_404(Quize, pk=view.kwargs.get('quiz_id'))
+        user = request.user
+        return (quiz.author == user.user_profile) or (quiz._class.students.filter(django_user=user).exists())
+        
+class IsClassStudent_by_question(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        question = get_object_or_404(Question, pk=view.kwargs.get('question_id'))
+        user = request.user
+        return question.quize._class.students.filter(django_user=user).exists()
