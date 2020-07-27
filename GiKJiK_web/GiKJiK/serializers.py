@@ -114,3 +114,8 @@ class ChoiceCreateSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'question': {'read_only': True}
         }
+
+class ClassChangeStateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Class
+        fields = ['state', ]

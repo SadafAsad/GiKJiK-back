@@ -152,3 +152,15 @@ class ClassDeleteView(generics.DestroyAPIView):
 
     lookup_field = 'class_id'
     lookup_url_kwarg = 'class_id'
+
+class ClassChangeStateView(generics.UpdateAPIView):
+    permission_classes = (IsAuthenticated, IsClassTeacher, )
+    queryset = Class.objects.all()
+    serializer_class = ClassChangeStateSerializer
+
+    lookup_field = 'class_id'
+    lookup_url_kwarg = 'class_id'
+
+    def perform_update(self, serializer):
+        serializer.instance.state = serializer.validated_data.get('state')
+        serializer.save()
