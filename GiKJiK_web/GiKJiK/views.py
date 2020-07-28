@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from GiKJiK.models import *
@@ -200,3 +201,13 @@ class CreateGradeView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(question=get_object_or_404(Question, pk=self.kwargs.get('question_id')), student=serializer.validated_data.get('student'))
+
+class StudentQuizesGrades(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = GradeListSerializer
+
+    def get_queryset(self):
+        user = self.request.user.user_profile
+        return user.std_grades.all()
+
+    # bayad betoonm grade aye ye quiz ro dast bandi konm jam bezanm va namayesh bedam ...

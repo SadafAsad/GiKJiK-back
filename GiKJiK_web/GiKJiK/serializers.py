@@ -136,3 +136,8 @@ class GradeCreateSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'question': {'read_only': True}
         }
+
+class GradeListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grade
+        fields = '__all__'
