@@ -16,7 +16,7 @@
 * 15. teacher betoone quiz besaze
 * 16. teacher betoone quiz pak kone
 * 17. teacher class ro online / offline kone
-18. teacher betoone nomre bede
+* 18. teacher betoone nomre bede
 19. teacher betoone nomre ha ro bebine
 20. teacher betoone list e nomre haye student haye har quiz ro bebine
 
