@@ -192,3 +192,11 @@ class CreateAnswerView(generics.CreateAPIView):
 class Test(generics.ListAPIView):
     serializer_class = QuizeCreateSerializer
     queryset = Question.objects.all()
+
+class CreateGradeView(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated, IsQuizauthor_by_question, )
+    queryset = Question.objects.all()
+    serializer_class = GradeCreateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(question=get_object_or_404(Question, pk=self.kwargs.get('question_id')), student=serializer.validated_data.get('student'))

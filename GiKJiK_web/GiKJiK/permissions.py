@@ -82,3 +82,10 @@ class IsClassStudent_by_question(permissions.BasePermission):
         question = get_object_or_404(Question, pk=view.kwargs.get('question_id'))
         user = request.user
         return question.quize._class.students.filter(django_user=user).exists()
+
+class IsQuizauthor_by_question(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        question = get_object_or_404(Question, pk=view.kwargs.get('question_id'))
+        user = request.user.user_profile
+        return question.quize.author == user

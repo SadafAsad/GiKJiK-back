@@ -128,3 +128,11 @@ class AnswerCreateSerializer(serializers.ModelSerializer):
             'student': {'read_only': True},
             'question': {'read_only': True}
         }
+
+class GradeCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grade
+        fields = '__all__'
+        extra_kwargs = {
+            'question': {'read_only': True}
+        }
