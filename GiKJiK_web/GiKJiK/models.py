@@ -52,6 +52,7 @@ class Quize(models.Model):
     _class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="class_quizes")
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="author_quizes")
 
+    title = models.CharField(max_length=225)
     date = models.DateTimeField(auto_now=True)
     deadline = models.DateTimeField(auto_now=False)
     state = models.CharField(max_length=225, choices=QuizConsts.states)
