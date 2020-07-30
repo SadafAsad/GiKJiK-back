@@ -1,12 +1,3 @@
-class QuizConsts:
-    NOT_OVERDUE = '0'
-    OVERDUE = '1'
-
-    states = (
-        (NOT_OVERDUE, "Not Overdue"),
-        (OVERDUE, "Overdue")
-    )
-
 class AnswerConsts:
     CORRECT = '0'
     WRONG = '1'
