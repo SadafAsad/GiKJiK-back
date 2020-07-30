@@ -14,9 +14,15 @@ class UserCreateSerializer(serializers.ModelSerializer):
         return make_password(value)
 
 class UserProfileListSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
+
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ['django_user', 'online_in', 'photo', 'username', ]
+
+    @staticmethod
+    def get_username(instance) -> str:
+        return instance.django_user.username
 
 class ClassCreateSerializer(serializers.ModelSerializer):
     class Meta:
