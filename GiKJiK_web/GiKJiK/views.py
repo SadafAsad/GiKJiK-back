@@ -14,12 +14,20 @@ class SignUpView(generics.CreateAPIView):
         serializer.save()
 
 # user
-class UserRetrieveView(generics.RetrieveAPIView):
+class UserRetrieveByUsernameView(generics.RetrieveAPIView):
     serializer_class = UserProfileListSerializer
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return user.user_profile
+
+class UserRetrieveByIdView(generics.RetrieveAPIView):
+    serializer_class = UserProfileListSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        user = get_object_or_404(UserProfile, pk=self.kwargs.get('user_id'))
         return user.user_profile
 
 # class

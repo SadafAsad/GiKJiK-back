@@ -27,7 +27,8 @@ urlpatterns = [
     path('sign-up/', SignUpView.as_view(), name="sign_up"),
 
     # user
-    path('user/<str:username>/search/', UserRetrieveView.as_view(), name="user_search"),
+    path('user/<str:username>/search/', UserRetrieveByUsernameView.as_view(), name="user_search"),
+    path('user/<int:user_id>/retrieve/', UserRetrieveByIdView.as_view(), name="user_retrieve"),
 
     # class
     path('class/create/', ClassCreateView.as_view(), name="class_create"),
