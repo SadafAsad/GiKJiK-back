@@ -28,7 +28,7 @@ class UserRetrieveByIdView(generics.RetrieveAPIView):
 
     def get_object(self):
         user = get_object_or_404(UserProfile, pk=self.kwargs.get('user_id'))
-        return user.user_profile
+        return user
 
 # class
 class ClassCreateView(generics.CreateAPIView):
