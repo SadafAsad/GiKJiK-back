@@ -1,5 +1,5 @@
 from django.db import models
-from GiKJiK.consts import (QuizConsts, AnswerConsts, ClassConsts)
+from GiKJiK.consts import (AnswerConsts)
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -55,7 +55,7 @@ class Quize(models.Model):
     title = models.CharField(max_length=225)
     date = models.DateTimeField(auto_now=True)
     deadline = models.DateTimeField(auto_now=False)
-    state = models.CharField(max_length=225, choices=QuizConsts.states)
+    status = models.CharField(max_length=225, default="Not Started")
 
 class Question(models.Model):
 
