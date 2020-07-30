@@ -27,7 +27,9 @@ urlpatterns = [
     # user
     path('user/list/', UserProfileListView.as_view(), name="user_list"),
     path('user/<str:username>/search/', UserRetrieveView.as_view(), name="user_search"),
-    path('user/class/list/', UserClassListView.as_view(), name="user_class_list"),
+    path('user/student/in/', UserStudentInClassListView.as_view(), name="user_student_in"),
+    path('user/teacher/in/', UserTeacherInClassListView.as_view(), name="user_teacher_in"),
+    path('user/owner/of/', UserOwnerOfClassListView.as_view(), name="user_owner_of"),
 
     # teacher
     path('class/<str:class_id>/teacher/add-remove/', ClassAddRemoveTeacherView.as_view(), name="class_ar_teacher"),

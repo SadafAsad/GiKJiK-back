@@ -66,13 +66,29 @@ class ClassJoinView(generics.UpdateAPIView):
     def perform_update(self, serializer):
         serializer.instance.students.add(self.request.user.user_profile)
 
-class UserClassListView(generics.ListAPIView):
+class UserStudentInClassListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ClassListSerializer
 
     def get_queryset(self):
         user = self.request.user.user_profile
         return user.member_classes.all()
+
+class UserTeacherInClassListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ClassListSerializer
+
+    def get_queryset(self):
+        user = self.request.user.user_profile
+        return user.teacher_classes.all()
+
+class UserOwnerOfClassListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ClassListSerializer
+
+    def get_queryset(self):
+        user = self.request.user.user_profile
+        return user.owner_classes.all()
 
 class ClassRemoveView(generics.UpdateAPIView):
     permission_classes = (IsAuthenticated, IsClassStudent, )
