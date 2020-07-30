@@ -28,7 +28,7 @@ class Class(models.Model):
 
     name = models.CharField(max_length=225, blank=False)
     class_id = models.CharField(max_length=225, unique=True, blank=False, null=False, primary_key=True)
-    state = models.CharField(max_length=225, choices=ClassConsts.states, default=ClassConsts.OFFLINE)
+    status = models.CharField(max_length=225, default="Offline")
 
 class News(models.Model):
 

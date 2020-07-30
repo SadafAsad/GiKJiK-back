@@ -17,12 +17,3 @@ class AnswerConsts:
         (WRONG, "Wrong"),
         (NOT_ANSWERED, "Not Answered")
     )
-
-class ClassConsts:
-    ONLINE = '0'
-    OFFLINE = '1'
-
-    states = (
-        (ONLINE, "Online"),
-        (OFFLINE, "Offline")
-    )
