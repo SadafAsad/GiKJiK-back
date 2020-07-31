@@ -3,6 +3,15 @@ from GiKJiK.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
+class UserUsernameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', ]
+    
+    @staticmethod
+    def get_username(instance) -> str:
+        return instance.username
+
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

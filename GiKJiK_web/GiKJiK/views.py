@@ -29,6 +29,13 @@ class UserRetrieveByIdView(generics.RetrieveAPIView):
     def get_object(self):
         return get_object_or_404(UserProfile, pk=self.kwargs.get('user_id'))
 
+class UserRetrieveUsernameView(generics.RetrieveAPIView):
+    serializer_class = UserUsernameSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return get_object_or_404(User, pk=self.request.user)
+
 # class
 class ClassCreateView(generics.CreateAPIView):
     serializer_class = ClassCreateSerializer
