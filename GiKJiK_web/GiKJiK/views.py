@@ -34,7 +34,7 @@ class UserRetrieveUsernameView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        return get_object_or_404(User, pk=self.request.user)
+        return self.request.user
 
 # class
 class ClassCreateView(generics.CreateAPIView):
