@@ -27,8 +27,7 @@ class UserRetrieveByIdView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        user = get_object_or_404(UserProfile, pk=self.kwargs.get('user_id'))
-        return user
+        return get_object_or_404(UserProfile, pk=self.kwargs.get('user_id'))
 
 # class
 class ClassCreateView(generics.CreateAPIView):
