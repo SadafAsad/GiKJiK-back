@@ -20,6 +20,9 @@ class UserProfile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.user_profile.save()
 
+    def __str__(self):
+        return '%s' % (self.django_user.username)
+
 class Class(models.Model):
 
     owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="owner_classes")
