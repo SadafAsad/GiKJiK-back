@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(UserProfile)
 admin.site.register(Class)
 admin.site.register(News)
+admin.site.register(Quize)
+admin.site.register(Question)
