@@ -127,9 +127,11 @@ class ClassAddRemoveTeacherView(generics.UpdateAPIView):
 
     def perform_update(self, serializer):
         if serializer.validated_data.get('action') == self.serializer_class.ADD:
-            serializer.instance.teacher.add(serializer.validated_data.get('teacher'))
+            serializer.instance.teacher = serializer.validated_data.get('m_teacher')
+            serializer.save()
         else:
-            serializer.instance.teacher.remove(serializer.validated_data.get('teacher'))
+            serializer.instance.teacher.delete()
+            serializer.save()
 
 # student
 class ClassAddRemoveStudentView(generics.UpdateAPIView):

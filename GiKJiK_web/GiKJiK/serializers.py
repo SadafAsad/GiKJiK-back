@@ -64,7 +64,7 @@ class ClassAddRemoveTeacherSerializer(serializers.ModelSerializer):
             'teacher': {'read_only': True}
         }
 
-    def validate_teacher(self, m_teacher):
+    def validate_m_teacher(self, m_teacher):
         return m_teacher.user_profile
 
 class ClassJoinRemoveSerializer(serializers.ModelSerializer):
