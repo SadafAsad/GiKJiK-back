@@ -39,6 +39,9 @@ class ClassCreateSerializer(serializers.ModelSerializer):
         fields = ['name', 'class_id', ]
 
 class ClassListSerializer(serializers.ModelSerializer):
+    teachers = serializers.StringRelatedField(many=True)
+    students = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Class
         fields = '__all__'
