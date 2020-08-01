@@ -18,19 +18,19 @@ class CanCreateNews(permissions.BasePermission):
 
     def has_permission(self, request, view):
         t_class = get_object_or_404(Class, class_id=view.kwargs.get('class_id'))
-        return (t_class.owner == request.user.user_profile) or (t_class.teachers.filter(django_user=request.user).exists())
+        return (t_class.owner == request.user.user_profile) or (t_class.teacher == request.user.user_profile)
 
 class InClass(permissions.BasePermission):
 
     def has_permission(self, request, view):
         t_class = get_object_or_404(Class, class_id=view.kwargs.get('class_id'))
-        return (t_class.owner == request.user.user_profile) or (t_class.teachers.filter(django_user=request.user).exists()) or (t_class.students.filter(django_user=request.user).exists())
+        return (t_class.owner == request.user.user_profile) or (t_class.teacher == request.user.user_profile) or (t_class.students.filter(django_user=request.user).exists())
 
 class IsClassTeacher(permissions.BasePermission):
 
     def has_permission(self, request, view):
         t_class = get_object_or_404(Class, class_id=view.kwargs.get('class_id'))
-        return t_class.teachers.filter(django_user=request.user).exists()
+        return t_class.teacher == request.user.user_profile
 
 class CanEditQuiz(permissions.BasePermission):
 

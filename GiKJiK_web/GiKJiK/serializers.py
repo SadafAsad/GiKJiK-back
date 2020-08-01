@@ -39,8 +39,9 @@ class ClassCreateSerializer(serializers.ModelSerializer):
         fields = ['name', 'class_id', ]
 
 class ClassListSerializer(serializers.ModelSerializer):
-    teachers = serializers.StringRelatedField(many=True)
+    teacher = serializers.StringRelatedField(many=False)
     students = serializers.StringRelatedField(many=True)
+    owner = serializers.StringRelatedField(many=False)
 
     class Meta:
         model = Class
@@ -53,18 +54,18 @@ class ClassAddRemoveTeacherSerializer(serializers.ModelSerializer):
     choices = (ADD,
                REMOVE)
 
-    teacher = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True)
+    m_teacher = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True)
     action = serializers.ChoiceField(choices=choices, write_only=True)
 
     class Meta:
         model = Class
-        fields = ['teacher', 'action', ]
+        fields = ['m_teacher', 'action', ]
         extra_kwargs = {
-            'teachers': {'read_only': True}
+            'teacher': {'read_only': True}
         }
 
-    def validate_teacher(self, teacher):
-        return teacher.user_profile
+    def validate_teacher(self, m_teacher):
+        return m_teacher.user_profile
 
 class ClassJoinRemoveSerializer(serializers.ModelSerializer):
     class Meta:
@@ -75,6 +76,8 @@ class ClassJoinRemoveSerializer(serializers.ModelSerializer):
         }
 
 class NewsCreateSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField(many=False)
+
     class Meta:
         model = News
         fields = '__all__'
@@ -84,6 +87,8 @@ class NewsCreateSerializer(serializers.ModelSerializer):
         }
 
 class NewsListSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField(many=False)
+
     class Meta:
         model = News
         fields = '__all__'
@@ -109,6 +114,8 @@ class ClassAddRemoveStudentSerializer(serializers.ModelSerializer):
         return student.user_profile
 
 class QuizeCreateSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField(many=False)
+
     class Meta:
         model = Quize
         fields = '__all__'
