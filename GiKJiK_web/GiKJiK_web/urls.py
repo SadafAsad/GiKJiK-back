@@ -51,6 +51,7 @@ urlpatterns = [
     # news
     path('class/<str:class_id>/add/news/', NewsCreate.as_view(), name="class_add_news"),
     path('class/<str:class_id>/blackboard/', ClassNewsListView.as_view(), name="class_news"),
+    path('news/<int:news_id>/delete/', NewsDeleteView.as_view(), name="news_delete"),
 
     # quiz
     path('class/<str:class_id>/create/quiz/', QuizCreateView.as_view(), name="class_add_quiz"),
