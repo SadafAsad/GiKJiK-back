@@ -8,11 +8,11 @@
 ✔️* 8. user betoone list e news haye class ro bebine
 
 ✔️* 9. owner betoone teacher taein kone
-* 10. teacher betoone student add kone
+✔️* 10. teacher betoone student add kone
 ✔️* 11. owner va teacher be blackboard news add kone
 12. teacher be whiteboard
 ✔️* 13. owner betoone class pak kone
-* 14. teacher betoone student kick kone
+✔️* 14. teacher betoone student kick kone
 ✔️* 15. teacher betoone quiz besaze
 ✔️* 16. teacher betoone quiz pak kone
 * 17. teacher class ro online / offline kone
