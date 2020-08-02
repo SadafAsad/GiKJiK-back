@@ -164,6 +164,14 @@ class ClassNewsListView(generics.ListAPIView):
         t_class = get_object_or_404(Class, class_id=self.kwargs.get('class_id'))
         return t_class.news.all()
 
+class NewsDeleteView(generics.DestroyAPIView):
+    permission_classes = (IsAuthenticated, IsNewsAuthor, )
+    queryset = News.objects.all()
+    serializer_class = NewsListSerializer
+
+    lookup_field = 'pk'
+    lookup_url_kwarg = 'news_id'
+
 # quiz
 class QuizCreateView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated, IsClassTeacher, )

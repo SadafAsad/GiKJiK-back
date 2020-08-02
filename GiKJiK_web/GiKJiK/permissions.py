@@ -61,3 +61,9 @@ class IsQuizauthor_by_question(permissions.BasePermission):
     def has_permission(self, request, view):
         question = get_object_or_404(Question, pk=view.kwargs.get('question_id'))
         return question.quize.author == request.user.user_profile
+
+class IsNewsAuthor(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        news = get_object_or_404(News, pk=view.kwargs.get('news_id'))
+        return news.author == request.user.user_profile
