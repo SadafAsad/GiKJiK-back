@@ -27,11 +27,15 @@ class UserProfileListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ['django_user', 'online_in', 'photo', 'username', ]
+        fields = ['django_user', 'online_in', 'photo', 'username', 'id', ]
 
     @staticmethod
     def get_username(instance) -> str:
         return instance.django_user.username
+    
+    @staticmethod
+    def get_id(instance) -> int:
+        return instance.django_user.id
 
 class ClassCreateSerializer(serializers.ModelSerializer):
     class Meta:

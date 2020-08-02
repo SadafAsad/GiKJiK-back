@@ -2,7 +2,7 @@
 ✔️* 2. list e class aei ke ozvesh hast ro bebine
 ✔️* 3. class ro ba class_id search kone
 ✔️* 4. ozve class beshe
-* 5. class ro hazf kone
+✔️* 5. class ro hazf kone
 ✔️6. varede class beshe
 ✔️7. az class biyad biroon
 ✔️* 8. user betoone list e news haye class ro bebine
@@ -11,7 +11,7 @@
 * 10. teacher betoone student add kone
 ✔️* 11. owner va teacher be blackboard news add kone
 12. teacher be whiteboard
-* 13. owner betoone class pak kone
+✔️* 13. owner betoone class pak kone
 * 14. teacher betoone student kick kone
 ✔️* 15. teacher betoone quiz besaze
 ✔️* 16. teacher betoone quiz pak kone
