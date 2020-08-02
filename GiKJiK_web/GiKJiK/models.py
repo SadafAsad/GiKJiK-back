@@ -20,7 +20,7 @@ class UserProfile(models.Model):
         instance.user_profile.save()
 
     def __str__(self):
-        return '%s' % (self.django_user.username)
+        return '%s' % (self.django_user.username) #username be ja id
 
 class Class(models.Model):
 
