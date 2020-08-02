@@ -260,7 +260,6 @@ class StudentQuizesGrades(APIView):
 
     # bayad betoonm grade aye ye quiz ro dast bandi konm jam bezanm va namayesh bedam ...
 
-
 # test
 class UserProfileListView(generics.ListAPIView):
     serializer_class = UserProfileListSerializer
