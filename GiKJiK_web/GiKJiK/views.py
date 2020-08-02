@@ -149,7 +149,7 @@ class ClassAddRemoveStudentView(generics.UpdateAPIView):
             serializer.instance.students.remove(serializer.validated_data.get('student'))
 
 
-class ClassStudentsListView(generics.ListAPIView):
+class UserProfileListSerializer(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = UserUsernameSerializer
 
