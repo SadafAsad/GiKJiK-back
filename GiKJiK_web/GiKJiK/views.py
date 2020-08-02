@@ -148,6 +148,15 @@ class ClassAddRemoveStudentView(generics.UpdateAPIView):
         else:
             serializer.instance.students.remove(serializer.validated_data.get('student'))
 
+
+class ClassStudentsListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserUsernameSerializer
+
+    def get_queryset(self):
+        t_class = get_object_or_404(Class, class_id=self.kwargs.get('class_id'))
+        return t_class.students
+
 # news
 class NewsCreate(generics.CreateAPIView):
     permission_classes = (IsAuthenticated, CanCreateNews, )
