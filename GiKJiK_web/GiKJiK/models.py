@@ -1,5 +1,4 @@
 from django.db import models
-from GiKJiK.consts import (AnswerConsts)
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -87,4 +86,4 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="question_answers")
 
     answer = models.CharField(max_length=225, blank=True)
-    ans_state = models.CharField(max_length=225, choices=AnswerConsts.states, default=AnswerConsts.NOT_ANSWERED)
+    status = models.IntegerField(default=0)

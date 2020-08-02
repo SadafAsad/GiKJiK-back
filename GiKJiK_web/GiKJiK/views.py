@@ -222,7 +222,7 @@ class CreateAnswerView(generics.CreateAPIView):
     serializer_class = AnswerCreateSerializer
 
     def perform_create(self, serializer):
-        serializer.save(question=get_object_or_404(Question, pk=self.kwargs.get('question_id')), student=self.request.user.user_profile)
+        serializer.save(question=get_object_or_404(Question, pk=self.kwargs.get('question_id')), student=self.request.user.user_profile, status=1)
 
 # grade
 class CreateGradeView(generics.CreateAPIView):
